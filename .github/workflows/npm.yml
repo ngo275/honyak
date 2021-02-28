@@ -14,7 +14,6 @@ jobs:
         with:
           node-version: 10
       - run: npm install
-      - run: npm test
       - name: Get the version
         id: get_version
         run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
@@ -32,8 +31,6 @@ jobs:
           git merge temp-branch
           git push origin master
           git push
-      - name: Build library
-        run: npm run build
       - uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}

@@ -1,0 +1,39 @@
+name: npm
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10
+      - run: npm install
+      - run: npm test
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+      - name: Bump version
+        run: npm version --git-tag-version=false ${{ steps.get_version.outputs.VERSION }}
+      - name: Update package.json
+        run: |
+          git config --global user.name 'ngo275'
+          git config --global user.email 'ngo38114@credify.one'
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB }}@github.com/$GITHUB_REPOSITORY
+          git commit -am "Bump version in package.json"
+          git fetch
+          git branch temp-branch
+          git checkout master
+          git merge temp-branch
+          git push origin master
+          git push
+      - name: Build library
+        run: npm run build
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}

@@ -1,0 +1,15 @@
+{
+  "name": "translator",
+  "version": "0.1.0",
+  "main": "index.js",
+  "author": "@ngo275",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@google-cloud/translate": "^6.1.0",
+    "js-yaml": "^4.0.0",
+    "minimist": "^1.2.5"
+  }
+}

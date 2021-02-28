@@ -1,0 +1,7 @@
+InvalidArgumentError: "Invalid argument"
+ValidationError: "There is an error while validating your request"
+UnauthorizedError: "Unauthorized"
+PermissionDeniedError: "You don't have permission to perform this action"
+NotFoundError: "Requesting record not found"
+UnimplementedError: "This action is not implemented"
+InternalServerError: "Internal server error"

@@ -1,0 +1,15 @@
+{
+  "menu.user-list": "User list",
+  "menu.settings": "Settings",
+  "menu.settings.general_information": "General Information",
+  "common.back": "Back",
+  "common.next": "Next",
+  "common.new": "New",
+  "common.approve": "Approve",
+  "common.reject": "Reject",
+  "common.cancel": "Cancel",
+  "common.previous-request": "Previous Request",
+  "common.next-request": "Next Request",
+  "common.termsOfServices": "Terms of services",
+  "common.privacyPolicy": "Privacy policy"
+}

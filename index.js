@@ -1,19 +1,27 @@
+#!/usr/bin/env node
+
 const {Translate} = require('@google-cloud/translate').v2;
 const fs = require('fs');
 const yaml = require('js-yaml');
+const chalk = require('chalk');
 const argv = require('minimist')(process.argv.slice(2));
 const { checkFormat, FORMATS } = require("./supportedFormats");
 
 const inputFilePath = argv["i"] || argv["input"];
 
+if (!process.env.GOOGLE_APPLICATION_CREDENTIALS) {
+  console.log(chalk.red("Please set GOOGLE_APPLICATION_CREDENTIALS."));
+  process.exit();
+}
+
 if (!inputFilePath) {
-  console.error("Please pass an input file path.");
-  return;
+  console.log(chalk.red("Please pass an input file path."));
+  process.exit();
 }
 const format = checkFormat(inputFilePath);
 if (format === FORMATS.unknown) {
-  console.error("This tool supports only json and yaml.");
-  return;
+  console.error(chalk.red("This tool supports only json and yaml."));
+  process.exit();
 }
 
 const outputFilePath = argv["o"] || argv["output"] || `output.${format}`;
@@ -53,5 +61,6 @@ translateObject().then((object) => {
     const data = yaml.dump(object);
     fs.writeFileSync(outputFilePath, data);
   }
-  console.log("Translation completed!")
+  console.log(chalk.green(`Translation completed!\nCheck: ${outputFilePath}`));
 });
+

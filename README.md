@@ -1,13 +1,13 @@
-# Translator
+# Translator tool - honyak
 
-This tool translates your file into whatever language you want to use! This aims to solve pains for developers to localize many texts :sparkles:. 
+This tool translates your localization file into whatever language you want to use! This aims to solve pains for developers to localize many files :sparkles:. 
 
 ## How to use
 
 ```shell script
-$ npm i -g translator
+$ npm i -g honyak
 $ export GOOGLE_APPLICATION_CREDENTIALS=/path/to/service-account.json
-$ translator start -i YOUR_FILE_PATH -l ja
+$ honyak -i YOUR_FILE_PATH -l ja
 ```
 
 Since this library leverages Google Translate API, this requires Google service account (`GOOGLE_APPLICATION_CREDENTIALS`).
@@ -26,7 +26,7 @@ Please refer to Google documentation regarding the service account key.
 If you want to translate `./exmaple/en.json` to Vietnamese, then 
 
 ```shell script
-$ translator start -i example/en.json -l vi
+$ honyak -i example/en.json -l vi
 ```
 
 ## Note
